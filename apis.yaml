@@ -1,0 +1,275 @@
+# The APIs this repository generates clients for. scripts/generate.py reads this file.
+# To add an API: add an entry, run `uv run python scripts/generate.py --fetch`, commit.
+
+package: ebay_apiroute  # the Python package the clients live in, under src/
+
+apis:
+  - name: buy_browse
+    title: Browse API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/buy/browse/openapi/3/buy_browse_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/buy/static/api-browse.html
+    module: buy.browse
+    client: BuyBrowseApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: buy_deal
+    title: Deal API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/buy/deal/openapi/3/buy_deal_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/buy/static/api-deal.html
+    module: buy.deal
+    client: BuyDealApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: buy_feed
+    title: Feed API (Buy)
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/buy/feed/openapi/3/buy_feed_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/buy/feed/static/overview.html
+    module: buy.feed
+    client: BuyFeedApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: buy_marketing
+    title: Buy Marketing API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/buy/marketing/openapi/3/buy_marketing_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/buy/marketing/static/overview.html
+    module: buy.marketing
+    client: BuyMarketingApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: buy_offer
+    title: Buy Offer API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/buy/offer/openapi/3/buy_offer_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/buy/offer/static/overview.html
+    module: buy.offer
+    client: BuyOfferApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: buy_order
+    title: Order API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/buy/order/openapi/3/buy_order_v2_oas3.json
+    docs: https://developer.ebay.com/api-docs/buy/order/static/overview.html
+    module: buy.order
+    client: BuyOrderApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_catalog
+    title: Catalog API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/catalog/openapi/3/commerce_catalog_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/catalog/static/overview.html
+    module: commerce.catalog
+    client: CommerceCatalogApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_charity
+    title: Charity API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/charity/openapi/3/commerce_charity_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/charity/static/overview.html
+    module: commerce.charity
+    client: CommerceCharityApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_feedback
+    title: Feedback API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/feedback/openapi/3/commerce_feedback_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/feedback/static/overview.html
+    module: commerce.feedback
+    client: CommerceFeedbackApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_identity
+    title: Identity API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/identity/openapi/3/commerce_identity_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/identity/resources/methods
+    module: commerce.identity
+    client: CommerceIdentityApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_media
+    title: Media API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/media/openapi/3/commerce_media_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/media/static/overview.html
+    module: commerce.media
+    client: CommerceMediaApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_message
+    title: Message API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/message/openapi/3/commerce_message_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/message/resources/methods
+    module: commerce.message
+    client: CommerceMessageApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_notification
+    title: Notification API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/notification/openapi/3/commerce_notification_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/notification/static/overview.html
+    module: commerce.notification
+    client: CommerceNotificationApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_taxonomy
+    title: Taxonomy API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/taxonomy/openapi/3/commerce_taxonomy_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/taxonomy/static/overview.html
+    module: commerce.taxonomy
+    client: CommerceTaxonomyApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_translation
+    title: Translation API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/translation/openapi/3/commerce_translation_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/translation/static/overview.html
+    module: commerce.translation
+    client: CommerceTranslationApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: commerce_vero
+    title: VeRO API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/commerce/vero/openapi/3/commerce_vero_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/commerce/vero/static/overview.html
+    module: commerce.vero
+    client: CommerceVeroApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: developer_analytics
+    title: Developer Analytics API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/developer/analytics/openapi/3/developer_analytics_v1_beta_oas3.json
+    docs: https://developer.ebay.com/api-docs/developer/analytics/resources/rate_limit/methods/getRateLimits
+    module: developer.analytics
+    client: DeveloperAnalyticsApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_account
+    title: Account API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/account/openapi/3/sell_account_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/account/static/overview.html
+    module: sell.account
+    client: SellAccountApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_analytics
+    title: Analytics API (Sell)
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/analytics/openapi/3/sell_analytics_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/analytics/static/overview.html
+    module: sell.analytics
+    client: SellAnalyticsApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_feed
+    title: Feed API (Sell)
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/feed/openapi/3/sell_feed_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/feed/static/overview.html
+    module: sell.feed
+    client: SellFeedApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_finances
+    title: Finances API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/finances/openapi/3/sell_finances_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/finances/overview.html
+    module: sell.finances
+    client: SellFinancesApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_fulfillment
+    title: Fulfillment API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/fulfillment/openapi/3/sell_fulfillment_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/fulfillment/overview.html
+    module: sell.fulfillment
+    client: SellFulfillmentApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_inventory
+    title: Inventory API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/inventory/openapi/3/sell_inventory_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/inventory/static/overview.html
+    module: sell.inventory
+    client: SellInventoryApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_logistics
+    title: Logistics API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/logistics/openapi/3/sell_logistics_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/logistics/static/overview.html
+    module: sell.logistics
+    client: SellLogisticsApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_marketing
+    title: Marketing API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/marketing/openapi/3/sell_marketing_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/marketing/static/overview.html
+    module: sell.marketing
+    client: SellMarketingApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_metadata
+    title: Metadata API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/metadata/openapi/3/sell_metadata_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/metadata/overview.html
+    module: sell.metadata
+    client: SellMetadataApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_negotiation
+    title: Negotiation API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/negotiation/openapi/3/sell_negotiation_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/negotiation/static/overview.html
+    module: sell.negotiation
+    client: SellNegotiationApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_recommendation
+    title: Recommendation API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/recommendation/openapi/3/sell_recommendation_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/recommendation/static/overview.html
+    module: sell.recommendation
+    client: SellRecommendationApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: sell_stores
+    title: Stores API
+    format: openapi
+    spec: https://developer.ebay.com/api-docs/master/sell/stores/openapi/3/sell_stores_v1_oas3.json
+    docs: https://developer.ebay.com/api-docs/sell/stores/static/overview.html
+    module: sell.stores
+    client: SellStoresApi
+    base_class: ebay_apiroute.auth:EbayAuth
+
+  - name: trading
+    title: Trading API
+    format: wsdl
+    spec: https://developer.ebay.com/webservices/latest/ebaySvc.wsdl
+    docs: https://developer.ebay.com/devzone/xml/docs/reference/ebay/index.html
+    module: trading
+    client: TradingApi
+    base_class: ebay_apiroute.auth:TradingAuth
