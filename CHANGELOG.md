@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.0] - Unreleased
+## [0.1.0] - 2026-10-23
 
 ### Added
 
@@ -8,3 +8,5 @@
 - `EbayAuth`: OAuth access tokens (strings, or functions returning the current one), `X-EBAY-C-MARKETPLACE-ID`, and the sandbox.
 - `TradingAuth`: `RequesterCredentials` in the SOAP header, plus the call name, site, application ID and version in the query.
 - Weekly Build workflow that refetches the specs, regenerates and commits changes; CI that checks the generated code matches the committed specs; release-please and PyPI trusted publishing.
+
+[0.1.0]: https://github.com/dougyouch/ebay-apiroute/releases/tag/v0.1.0
