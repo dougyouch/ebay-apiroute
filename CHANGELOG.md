@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/dougyouch/ebay-apiroute/compare/v0.1.0...v0.1.1) (2026-10-23)
+
+
+### Documentation
+
+* date the 0.1.0 changelog entry ([9292bae](https://github.com/dougyouch/ebay-apiroute/commit/9292baea89b4ff8fcc0b38754e1c5a65e9060651))
+
 ## [0.1.0] - 2026-10-23
 
 ### Added
