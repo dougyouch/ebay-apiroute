@@ -147,8 +147,6 @@ if TYPE_CHECKING:
         SetUserNotesResponseType,
         SetUserPreferencesRequestType,
         SetUserPreferencesResponseType,
-        UploadSiteHostedPicturesRequestType,
-        UploadSiteHostedPicturesResponseType,
         VerifyAddFixedPriceItemRequestType,
         VerifyAddFixedPriceItemResponseType,
         VerifyAddItemRequestType,
@@ -673,15 +671,6 @@ class TradingApiModels(TypedClient):
         body: SetUserPreferencesRequestType | None = None,
     ) -> SetUserPreferencesResponseType:
         return self._call("set_user_preferences", "SetUserPreferencesResponseType", body=body)
-
-    def upload_site_hosted_pictures(
-        self,
-        *,
-        body: UploadSiteHostedPicturesRequestType | None = None,
-    ) -> UploadSiteHostedPicturesResponseType:
-        return self._call(
-            "upload_site_hosted_pictures", "UploadSiteHostedPicturesResponseType", body=body
-        )
 
     def verify_add_fixed_price_item(
         self,

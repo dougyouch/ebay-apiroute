@@ -68,7 +68,6 @@ if TYPE_CHECKING:
     from .schemas.authenticity_verification_type import AuthenticityVerificationType
     from .schemas.average_rating_details_type import AverageRatingDetailsType
     from .schemas.average_rating_summary_type import AverageRatingSummaryType
-    from .schemas.base64_binary_type import Base64BinaryType
     from .schemas.best_offer_action_code_type import BestOfferActionCodeType
     from .schemas.best_offer_array_type import BestOfferArrayType
     from .schemas.best_offer_details_type import BestOfferDetailsType
@@ -440,11 +439,7 @@ if TYPE_CHECKING:
     from .schemas.pickup_status_code_type import PickupStatusCodeType
     from .schemas.pictograms_type import PictogramsType
     from .schemas.picture_details_type import PictureDetailsType
-    from .schemas.picture_format_code_type import PictureFormatCodeType
-    from .schemas.picture_set_code_type import PictureSetCodeType
-    from .schemas.picture_set_member_type import PictureSetMemberType
     from .schemas.picture_source_code_type import PictureSourceCodeType
-    from .schemas.picture_upload_policy_code_type import PictureUploadPolicyCodeType
     from .schemas.picture_ur_ls_type import PictureURLsType
     from .schemas.pictures_type import PicturesType
     from .schemas.place_offer_request_type import PlaceOfferRequestType
@@ -597,7 +592,6 @@ if TYPE_CHECKING:
     from .schemas.site_buyer_requirement_details_type import SiteBuyerRequirementDetailsType
     from .schemas.site_code_type import SiteCodeType
     from .schemas.site_details_type import SiteDetailsType
-    from .schemas.site_hosted_picture_details_type import SiteHostedPictureDetailsType
     from .schemas.sku_array_type import SKUArrayType
     from .schemas.sort_order_code_type import SortOrderCodeType
     from .schemas.statements_type import StatementsType
@@ -636,12 +630,6 @@ if TYPE_CHECKING:
     from .schemas.transaction_status_type import TransactionStatusType
     from .schemas.unit_info_type import UnitInfoType
     from .schemas.unpaid_item_assistance_preferences_type import UnpaidItemAssistancePreferencesType
-    from .schemas.upload_site_hosted_pictures_request_type import (
-        UploadSiteHostedPicturesRequestType,
-    )
-    from .schemas.upload_site_hosted_pictures_response_type import (
-        UploadSiteHostedPicturesResponseType,
-    )
     from .schemas.ups_rate_option_code_type import UPSRateOptionCodeType
     from .schemas.url_details_type import URLDetailsType
     from .schemas.url_type_code_type import URLTypeCodeType
@@ -731,7 +719,6 @@ __all__ = [
     "AuthenticityVerificationType",
     "AverageRatingDetailsType",
     "AverageRatingSummaryType",
-    "Base64BinaryType",
     "BestOfferActionCodeType",
     "BestOfferArrayType",
     "BestOfferDetailsType",
@@ -1069,12 +1056,8 @@ __all__ = [
     "PickupStatusCodeType",
     "PictogramsType",
     "PictureDetailsType",
-    "PictureFormatCodeType",
-    "PictureSetCodeType",
-    "PictureSetMemberType",
     "PictureSourceCodeType",
     "PictureURLsType",
-    "PictureUploadPolicyCodeType",
     "PicturesType",
     "PlaceOfferRequestType",
     "PlaceOfferResponseType",
@@ -1207,7 +1190,6 @@ __all__ = [
     "SiteBuyerRequirementDetailsType",
     "SiteCodeType",
     "SiteDetailsType",
-    "SiteHostedPictureDetailsType",
     "SortOrderCodeType",
     "StatementsType",
     "StatusCodeType",
@@ -1251,8 +1233,6 @@ __all__ = [
     "USPSRateOptionCodeType",
     "UnitInfoType",
     "UnpaidItemAssistancePreferencesType",
-    "UploadSiteHostedPicturesRequestType",
-    "UploadSiteHostedPicturesResponseType",
     "UserDefinedListType",
     "UserIDArrayType",
     "UserIdentityCodeType",
@@ -1333,7 +1313,6 @@ __getattr__, __dir__ = lazy_exports(
         "AuthenticityVerificationType": ".schemas.authenticity_verification_type",
         "AverageRatingDetailsType": ".schemas.average_rating_details_type",
         "AverageRatingSummaryType": ".schemas.average_rating_summary_type",
-        "Base64BinaryType": ".schemas.base64_binary_type",
         "BestOfferActionCodeType": ".schemas.best_offer_action_code_type",
         "BestOfferArrayType": ".schemas.best_offer_array_type",
         "BestOfferDetailsType": ".schemas.best_offer_details_type",
@@ -1671,12 +1650,8 @@ __getattr__, __dir__ = lazy_exports(
         "PickupStatusCodeType": ".schemas.pickup_status_code_type",
         "PictogramsType": ".schemas.pictograms_type",
         "PictureDetailsType": ".schemas.picture_details_type",
-        "PictureFormatCodeType": ".schemas.picture_format_code_type",
-        "PictureSetCodeType": ".schemas.picture_set_code_type",
-        "PictureSetMemberType": ".schemas.picture_set_member_type",
         "PictureSourceCodeType": ".schemas.picture_source_code_type",
         "PictureURLsType": ".schemas.picture_ur_ls_type",
-        "PictureUploadPolicyCodeType": ".schemas.picture_upload_policy_code_type",
         "PicturesType": ".schemas.pictures_type",
         "PlaceOfferRequestType": ".schemas.place_offer_request_type",
         "PlaceOfferResponseType": ".schemas.place_offer_response_type",
@@ -1809,7 +1784,6 @@ __getattr__, __dir__ = lazy_exports(
         "SiteBuyerRequirementDetailsType": ".schemas.site_buyer_requirement_details_type",
         "SiteCodeType": ".schemas.site_code_type",
         "SiteDetailsType": ".schemas.site_details_type",
-        "SiteHostedPictureDetailsType": ".schemas.site_hosted_picture_details_type",
         "SortOrderCodeType": ".schemas.sort_order_code_type",
         "StatementsType": ".schemas.statements_type",
         "StatusCodeType": ".schemas.status_code_type",
@@ -1853,8 +1827,6 @@ __getattr__, __dir__ = lazy_exports(
         "USPSRateOptionCodeType": ".schemas.usps_rate_option_code_type",
         "UnitInfoType": ".schemas.unit_info_type",
         "UnpaidItemAssistancePreferencesType": ".schemas.unpaid_item_assistance_preferences_type",
-        "UploadSiteHostedPicturesRequestType": ".schemas.upload_site_hosted_pictures_request_type",
-        "UploadSiteHostedPicturesResponseType": ".schemas.upload_site_hosted_pictures_response_type",
         "UserDefinedListType": ".schemas.user_defined_list_type",
         "UserIDArrayType": ".schemas.user_id_array_type",
         "UserIdentityCodeType": ".schemas.user_identity_code_type",

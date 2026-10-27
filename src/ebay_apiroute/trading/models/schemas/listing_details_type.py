@@ -72,9 +72,9 @@ class ListingDetailsType(BaseModel):
     # stamp (in GMT) for when the item was listed.
     start_time: str | None = Field(None, alias="StartTime")
 
-    # Time stamp (in GMT) when the listing is scheduled to end (calculated based on the values
-    # of <b>StartTime</b> and <b>ListingDuration</b> ) or the actual end time if the item has
-    # ended.
+    # Time stamp (in GMT) when the listing is scheduled to end, or the actual end time if the
+    # item has ended. <br><br>For auction listings that are eligible for extended bidding, this
+    # value reflects the effective current listing end time and may change if the listing close
     end_time: str | None = Field(None, alias="EndTime")
 
     # The URL of the Web page where a user can view the listing. On the US site, this is called

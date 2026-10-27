@@ -1349,26 +1349,6 @@ class TradingApi(TradingAuth):
     @route(
         "POST",
         "",
-        operation="UploadSiteHostedPictures",
-        body_format=SoapBody(
-            "UploadSiteHostedPicturesRequest",
-            "urn:ebay:apis:eBLBaseComponents",
-            "1.1",
-            operation="UploadSiteHostedPictures",
-        ),
-        decoder=SoapDecoder("urn:ebay:apis:eBLBaseComponents", "1.1"),
-        expected=(200, 500),
-        headers={"SOAPAction": '""'},
-    )
-    def upload_site_hosted_pictures(
-        self,
-        *,
-        body: dict[str, Any] | None = None,
-    ) -> dict[str, Any]: ...
-
-    @route(
-        "POST",
-        "",
         operation="VerifyAddFixedPriceItem",
         body_format=SoapBody(
             "VerifyAddFixedPriceItemRequest",

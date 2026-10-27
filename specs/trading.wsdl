@@ -7,7 +7,7 @@
 	xmlns="urn:ebay:apis:eBLBaseComponents"
 	targetNamespace="urn:ebay:apis:eBLBaseComponents">
 	<wsdl:types>
-<!-- Version 1487 -->
+<!-- Version 1489 -->
 <!-- (c) 2004-2026 eBay, Inc. All rights reserved -->
 		<xs:schema targetNamespace="urn:ebay:apis:eBLBaseComponents"  
 		xmlns:ns="urn:ebay:apis:eBLBaseComponents" 
@@ -11713,172 +11713,6 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!--  Call: UploadSiteHostedPictures -->
-  <xs:element name="UploadSiteHostedPicturesRequest" type="ns:UploadSiteHostedPicturesRequestType"/>
-  <xs:complexType name="UploadSiteHostedPicturesRequestType">
-    <xs:annotation>
-      <xs:documentation>
-        Uploads a picture to the eBay Picture Service and returns a URL of the picture.
-        You will use this URL when creating, revising, or relisting an item with the Trading API.
-      </xs:documentation>
-      <xs:appinfo>
-        <SeeLink>
-          <Title>Add pictures</Title>
-          <URL>https://developer.ebay.com/api-docs/user-guides/static/trading-user-guide/pictures.html</URL>
-        </SeeLink>
-        <SeeLink>
-          <Title>Include pictures for variations</Title>
-          <URL>https://developer.ebay.com/api-docs/user-guides/static/trading-user-guide/variations.html#pix</URL>
-        </SeeLink>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="ns:AbstractRequestType">
-        <xs:sequence>
-          <xs:element name="PictureName" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:documentation>
-                A seller-defined name for the picture. This field is optional, but can make it easier for a seller to track than an arbitrary, eBay-assigned URL.
-              </xs:documentation>
-              <xs:appinfo>
-                <CallInfo>
-                  <CallName>UploadSiteHostedPictures</CallName>
-                  <RequiredInput>No</RequiredInput>
-                </CallInfo>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="PictureSystemVersion" type="xs:int" minOccurs="0">
-            <xs:annotation>
-              <xs:documentation>
-                Specifies the picture system version. Only version 2 is valid.
-                Available to support future changes in the picture system version.
-              </xs:documentation>
-              <xs:appinfo>
-                <CallInfo>
-                  <Default>2</Default>
-                  <CallName>UploadSiteHostedPictures</CallName>
-                  <RequiredInput>No</RequiredInput>
-                </CallInfo>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="PictureSet" type="ns:PictureSetCodeType" minOccurs="0">
-            <xs:annotation>
-              <xs:documentation>
-                This enumeration value indicates the size of the picture that will be generated.
-                &lt;br/&gt;&lt;br/&gt;
-                &lt;span class="tablenote"&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;
-                To get the standard website image sizing with Zoom, set this field to &lt;b&gt;Supersize&lt;/b&gt;.
-                &lt;/span&gt;
-              </xs:documentation>
-              <xs:appinfo>
-                <CallInfo>
-                  <Default>Standard</Default>
-                  <AllValuesExcept>Large</AllValuesExcept>
-                  <CallName>UploadSiteHostedPictures</CallName>
-                  <RequiredInput>No</RequiredInput>
-                </CallInfo>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="PictureData" type="ns:Base64BinaryType" minOccurs="0">
-            <xs:annotation>
-              <xs:documentation>
-                An optional reference ID to the binary attachment.
-                &lt;br/&gt;&lt;br/&gt;
-                The &lt;b&gt;PictureData&lt;/b&gt; field does not contain the binary attachment. The binary attachment is image data, including the headers, from a JPG, GIF, PNG, BMP, or TIF format image file. The binary attachment must be sent as a MIME attachment, in your POST request, after the XML input.
-              </xs:documentation>
-              <xs:appinfo>
-                <CallInfo>
-                  <CallName>UploadSiteHostedPictures</CallName>
-                  <RequiredInput>No</RequiredInput>
-                </CallInfo>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="PictureUploadPolicy" type="ns:PictureUploadPolicyCodeType" minOccurs="0">
-            <xs:annotation>
-              <xs:documentation>
-                Determines if the uploaded picture is to replace all the pictures or to be added to the pictures currently available to a seller on the eBay site. The picture is available to the seller on the My Picture Uploads tab within the Sell Your Item pages.
-                &lt;br/&gt;&lt;br/&gt;
-                The picture you upload (and its URL) is stored for a period of time on the EPS server. If, within that time, the picture is associated with an item, then the picture persists on the eBay site for the same time length as other pictures uploaded using the &lt;b&gt;UploadSiteHostedPictures&lt;/b&gt; call.
-                &lt;br/&gt;&lt;br/&gt;
-                The expiration date of the picture is returned in the  &lt;b&gt;SiteHostedPictureDetails.UseByDate&lt;/b&gt; field in the response.
-              </xs:documentation>
-              <xs:appinfo>
-                <CallInfo>
-                  <CallName>UploadSiteHostedPictures</CallName>
-                  <RequiredInput>No</RequiredInput>
-                </CallInfo>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="ExternalPictureURL" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:documentation>
-                This field is used if the seller wishes to upload a picture to the EPS server that is currently on another external site. The URL of the picture you want to upload is passed in this field. Only https:// servers are supported.
-                You can  include only one &lt;b&gt;ExternalPictureURL&lt;/b&gt; field per call.
-                &lt;br&gt;&lt;br&gt;
-                The eBay server uses the information in this field to retrieve a picture from an external web server. Once retrieved, the picture will be copied to eBay Picture Services and retained for 30 days if not associated with a listing. When associated with a listing, the duration is the length of the listing plus 90 days.
-              </xs:documentation>
-              <xs:appinfo>
-                <MaxLength>1024</MaxLength>
-                <CallInfo>
-                  <CallName>UploadSiteHostedPictures</CallName>
-                  <RequiredInput>Conditionally</RequiredInput>
-                  <maxOccurs>1</maxOccurs>
-                </CallInfo>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-	<!--  Call: UploadSiteHostedPictures -->
-	<xs:element name="UploadSiteHostedPicturesResponse" type="ns:UploadSiteHostedPicturesResponseType"/>
-	<xs:complexType name="UploadSiteHostedPicturesResponseType">
-		<xs:annotation>
-			<xs:documentation>
-				Contains information about a picture upload (i.e., information about a picture
-				upload containing a binary attachment of an image).
-			</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="ns:AbstractResponseType">
-				<xs:sequence>
-					<xs:element name="PictureSystemVersion" type="xs:int" minOccurs="0" >
-						<xs:annotation>
-							<xs:documentation>
-								Specifies the picture system version that was used to upload pictures.
-								Only version 2 is valid.
-							</xs:documentation>
-							<xs:appinfo>
-								<CallInfo>
-									<CallName>UploadSiteHostedPictures</CallName>
-									<Returned>Always</Returned>
-								</CallInfo>
-							</xs:appinfo>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="SiteHostedPictureDetails" type="ns:SiteHostedPictureDetailsType" minOccurs="0" >
-						<xs:annotation>
-							<xs:documentation>
-								The information about an &lt;b&gt;UploadSiteHostedPictures&lt;/b&gt; upload, including the URL of the uploaded picture.
-							</xs:documentation>
-							<xs:appinfo>
-								<CallInfo>
-									<CallName>UploadSiteHostedPictures</CallName>
-									<Returned>Always</Returned>
-								</CallInfo>
-							</xs:appinfo>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
 	<!--  Call: VerifyAddFixedPriceItem -->
 	<xs:element name="VerifyAddFixedPriceItemRequest" type="ns:VerifyAddFixedPriceItemRequestType"/>
 	<xs:complexType name="VerifyAddFixedPriceItemRequestType">
@@ -20903,39 +20737,6 @@ communicated to the client.
 		<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-<!--
-
-##### from file eBLBaseComponents/public/Base64BinaryType.xsd #####
-
--->
-	<xs:complexType name="Base64BinaryType">
-    <xs:annotation>
-      <xs:documentation>
-        Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format by translating it into a radix-64 representation. The term "Base64" originates from a specific MIME content transfer encoding.
-        &lt;br/&gt;&lt;br/&gt;
-        &lt;span class="tablenote"&gt;
-        &lt;strong&gt;Note:&lt;/strong&gt; This type contains the name or reference ID of the binary attachment, not the attachment data. 
-        &lt;/span&gt;
-      </xs:documentation>
-    </xs:annotation>
-    <xs:simpleContent>
-      <xs:extension base="xs:base64Binary">
-        <xs:attribute name="contentType" type="xs:string">
-          <xs:annotation>
-            <xs:documentation>
-              This optional attribute allows the binary attachment to be named.
-            </xs:documentation>
-            <xs:appinfo>
-              <CallInfo>
-                <CallName>UploadSiteHostedPictures</CallName>
-                <RequiredInput>No</RequiredInput>
-              </CallInfo>
-            </xs:appinfo>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
 <!--
 
 ##### from file eBLBaseComponents/public/BestOfferActionCodeList.xsd #####
@@ -31683,7 +31484,7 @@ communicated to the client.
 			<xs:element name="ImageURL" type="xs:anyURI" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>
-						The URL to the Energy Efficiency Label image that is applicable to an item. This field is required if an Energy Efficiency Label is provided. The URL provided must be an eBay Picture Services (EPS) URL only. You can upload pictures to eBay Picture Services via the &lt;strong&gt;UploadSiteHostedPictures&lt;/strong&gt; call.
+						The URL to the Energy Efficiency Label image that is applicable to an item. This field is required if an Energy Efficiency Label is provided. The URL provided must be an eBay Picture Services (EPS) URL only. Use the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile" target="_blank"&gt;&lt;strong&gt;createImageFromFile&lt;/strong&gt;&lt;/a&gt; method of the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank"&gt;Media API&lt;/a&gt; to upload images to eBay and use the returned EPS-hosted image URL.
 					</xs:documentation>
 					<xs:appinfo>
 						<CallInfo>
@@ -31740,7 +31541,7 @@ communicated to the client.
 			<xs:element name="ProductInformationsheet" type="xs:anyURI" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>
-						The URL to the Product Information Sheet that provides complete manufacturer-provided efficiency information about an item. This field is required if an Energy Efficiency Label is provided. The URL provided must be an eBay Picture Services (EPS) URL only. You can upload pictures to eBay Picture Services via the &lt;strong&gt;UploadSiteHostedPictures&lt;/strong&gt; call.
+						The URL to the Product Information Sheet that provides complete manufacturer-provided efficiency information about an item. This field is required if an Energy Efficiency Label is provided. The URL provided must be an eBay Picture Services (EPS) URL only. Use the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile" target="_blank"&gt;&lt;strong&gt;createImageFromFile&lt;/strong&gt;&lt;/a&gt; method of the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank"&gt;Media API&lt;/a&gt; to upload images to eBay and use the returned EPS-hosted image URL.
 					</xs:documentation>
 					<xs:appinfo>
 						<CallInfo>
@@ -42319,9 +42120,7 @@ communicated to the client.
 			<xs:element name="EndTime" type="xs:dateTime" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-						Time stamp (in GMT) when the listing is scheduled to end
-						(calculated based on the values of &lt;b&gt;StartTime&lt;/b&gt; and &lt;b&gt;ListingDuration&lt;/b&gt; )
-						or the actual end time if the item has ended.
+						Time stamp (in GMT) when the listing is scheduled to end, or the actual end time if the item has ended. &lt;br&gt;&lt;br&gt;For auction listings that are eligible for extended bidding, this value reflects the effective current listing end time and may change if the listing close is extended. If an extension occurs, this value reflects the extended end time.
 					</xs:documentation>
 					<xs:appinfo>
 						<CallInfo>
@@ -45219,9 +45018,8 @@ communicated to the client.
 		<xs:annotation>
 			<xs:documentation>
 			Container for the image file that is to be sent in a message, which lets sellers share photos in messages using the API.
-			The photo must be uploaded by the seller or buyer to
-			&lt;a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/uploadsitehostedpictures.html"&gt;EPS (eBay Picture Services)&lt;/a&gt;
-			using a separate API call or the web flow. After the image is on the eBay server, you can
+			The photo must be uploaded by the seller or buyer 
+			using the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile" target="_blank"&gt;createImageFromFile&lt;/a&gt; method of the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank"&gt;Media API&lt;/a&gt; or the web flow. After the image is on the eBay server, you can
 			use &lt;b&gt;AddMemberMessage&lt;/b&gt; calls to pass the URL of the image in a message. The
 			uploaded images will be available as part of the email as a thumbnail image.
 			Clicking on the thumbnail, opens a larger version of the image in a filmstrip.
@@ -45235,10 +45033,8 @@ communicated to the client.
 				<xs:annotation>
 					<xs:documentation>
 						URL of an image to be included in a message.
-						The image must be uploaded to
-						&lt;a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/uploadsitehostedpictures.html"&gt;EPS
-						(eBay Picture Services)&lt;/a&gt;
-						using a separate API call or the web flow. This URL will be
+						The image must be uploaded using
+						the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile" target="_blank"&gt;createImageFromFile&lt;/a&gt; method of the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank"&gt;Media API&lt;/a&gt; or the web flow. This URL will be
 						validated and if it doesn't exist, the request will fail.
 					</xs:documentation>
 					<xs:appinfo>
@@ -53741,7 +53537,7 @@ communicated to the client.
 			<xs:element name="PictureURL" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>
-						The &lt;b&gt;PictureURL&lt;/b&gt; field contains a picture URL of the item, which can be sourced from eBay Picture Services (EPS-hosted) or an external server (self-hosted). A listing can include up to 24 picture URLs, but these URLs cannot be mixed between self-hosted and EPS-hosted within the same listing. Use the &lt;b&gt;UploadSiteHostedPictures&lt;/b&gt; call to upload images to EPS. All URLs must use the 'https' protocol; URLs using the 'http' protocol are not permitted.
+						The &lt;b&gt;PictureURL&lt;/b&gt; field contains a picture URL of the item, which can be sourced from eBay Picture Services (EPS-hosted) or an external server (self-hosted). A listing can include up to 24 picture URLs, but these URLs cannot be mixed between self-hosted and EPS-hosted within the same listing. Use the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile" target="_blank"&gt;&lt;b&gt;createImageFromFile&lt;/b&gt;&lt;/a&gt; method of the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank"&gt;Media API&lt;/a&gt; to upload images to eBay and use the returned EPS-hosted image URL. All URLs must use the 'https' protocol; URLs using the 'http' protocol are not permitted.
 						&lt;br/&gt;&lt;br/&gt;
 						Sellers can have up to 24 pictures in almost any category at no cost. Motor vehicle listings are an exception. The number of included pictures in motor vehicle listings depend on the selected vehicle package (see &lt;a href=&quot;https://www.ebay.com/help/selling/fees-credits-invoices/motors-fees?id=4127&quot;&gt;Fees for selling vehicles on eBay Motors&lt;/a&gt;). 
 						&lt;br/&gt;&lt;br/&gt;
@@ -53917,155 +53713,6 @@ communicated to the client.
 	</xs:complexType>
 <!--
 
-##### from file eBLBaseComponents/public/PictureFormatCodeType.xsd #####
-
--->
-	<xs:simpleType name="PictureFormatCodeType">
-		<xs:annotation>
-			<xs:documentation>
-				Indicates the format of the picture returned. Sometimes this is different than the format of the uploaded picture.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="JPG">
-				<xs:annotation>
-					<xs:documentation>
-						Indicates the picture was returned in JPG format. Uploaded pictures in JPG, TIF, or BMP will be returned as JPG.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GIF">
-				<xs:annotation>
-					<xs:documentation>
-						Indicates the picture was returned in GIF format.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="PNG">
-				<xs:annotation>
-					<xs:documentation>
-						Indicates the picture was returned in PNG format.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="CustomCode">
-				<xs:annotation>
-					<xs:documentation>
-						Reserved for internal use &lt;b&gt;only&lt;/b&gt;.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-<!--
-
-##### from file eBLBaseComponents/public/PictureSetCodeType.xsd #####
-
--->
-	<xs:simpleType name="PictureSetCodeType">
-    <xs:annotation>
-      <xs:documentation>
-        Specifies whether to generate the 'standard' set of images for each picture or to also generate a super-sized image.
-        &lt;br/&gt;&lt;br/&gt;
-        &lt;b&gt;Note:&lt;/b&gt; This type is used only for images that will be used in a listing.
-      </xs:documentation>
-      <xs:appinfo>
-      	<AllValuesExcept>Large</AllValuesExcept>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:restriction base="xs:token">
-      <xs:enumeration value="Standard">
-        <xs:annotation>
-          <xs:documentation>
-            Indicates to generate the "Standard" set of images, which is a set of 7 images of various sizes, for each &lt;b&gt;ExternalPictureURL&lt;/b&gt; submitted in the request.
-            This is the default. &lt;b&gt;Note:&lt;/b&gt; This field is used only for images that will be used in a listing.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Supersize">
-        <xs:annotation>
-          <xs:documentation>
-            Indicates to generate the "Standard" set &lt;i&gt;plus&lt;/i&gt; a super-sized image for each &lt;b&gt;ExternalPictureURL&lt;/b&gt; submitted in the request.
-            In order to include the super-sized image in the Add Item calls, you must also specify &lt;b&gt;Item.PictureDetails.PhotoDisplay.Supersize&lt;/b&gt; or &lt;b&gt;Item.PictureDetails.PhotoDisplay.PicturePack&lt;/b&gt;.
-             &lt;b&gt;Note:&lt;/b&gt; This field is used only for images that will be used in a listing.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Large">
-        <xs:annotation>
-          <xs:documentation>
-            This field is no longer returned.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="CustomCode">
-        <xs:annotation>
-          <xs:documentation>
-            Reserved for internal use &lt;b&gt;only&lt;/b&gt;.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-<!--
-
-##### from file eBLBaseComponents/public/PictureSetMemberType.xsd #####
-
--->
-	<xs:complexType name="PictureSetMemberType">
-		<xs:annotation>
-			<xs:documentation>
-				URL and size information for each generated and stored picture.
-				This data is provided for use in application previews of pictures.
-				This data is used for display control for specific pictures in the generated imageset.
-				This container is supplied for all generated pictures.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="MemberURL" type="xs:anyURI"	minOccurs="0" >
-				<xs:annotation>
-					<xs:documentation>
-						URL for the picture.
-					</xs:documentation>
-					<xs:appinfo>
-						<CallInfo>
-							<CallName>UploadSiteHostedPictures</CallName>
-							<Returned>Always</Returned>
-						</CallInfo>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="PictureHeight" type="xs:int"	minOccurs="0" >
-				<xs:annotation>
-					<xs:documentation>
-						Height of the picture in pixels.
-					</xs:documentation>
-					<xs:appinfo>
-						<CallInfo>
-							<CallName>UploadSiteHostedPictures</CallName>
-							<Returned>Always</Returned>
-						</CallInfo>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="PictureWidth" type="xs:int"	minOccurs="0" >
-				<xs:annotation>
-					<xs:documentation>
-						Width of the picture in pixels.
-					</xs:documentation>
-					<xs:appinfo>
-						<CallInfo>
-							<CallName>UploadSiteHostedPictures</CallName>
-							<Returned>Always</Returned>
-						</CallInfo>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-<!--
-
 ##### from file eBLBaseComponents/public/PictureSourceCodeList.xsd #####
 
 -->
@@ -54155,44 +53802,6 @@ communicated to the client.
 		<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-<!--
-
-##### from file eBLBaseComponents/public/PictureUploadPolicyCodeType.xsd #####
-
--->
-	<xs:simpleType name="PictureUploadPolicyCodeType">
-		<xs:annotation>
-			<xs:documentation>
-				Values to be used in choosing that an uploaded picture is added to the available pictures on the eBay site.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="Add">
-				<xs:annotation>
-					<xs:documentation>
-						Specifies that an uploaded picture is added to the pictures available to a
-						seller on the eBay site.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ClearAndAdd">
-				<xs:annotation>
-					<xs:documentation>
-						Specifies, first, that all pictures available to a seller on the eBay site are
-						removed, and then second, that the currently uploaded picture is made
-						available to the seller.
-					 </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="CustomCode">
-				<xs:annotation>
-					<xs:documentation>
-						 Reserved for internal use ONLY.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
 <!--
 
 ##### from file eBLBaseComponents/public/PicturesType.xsd #####
@@ -74124,132 +73733,6 @@ Requirements to become Top Rated&lt;/a&gt;&lt;/li&gt;
 	</xs:complexType>
 <!--
 
-##### from file eBLBaseComponents/public/SiteHostedPictureDetailsType.xsd #####
-
--->
-	<xs:complexType name="SiteHostedPictureDetailsType">
-    <xs:annotation>
-      <xs:documentation>
-        Type defining the &lt;b&gt;SiteHostedPictureDetails&lt;/b&gt; container that is returned
-				in an &lt;b&gt;UploadSiteHostedPictures&lt;/b&gt; call.
-      </xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="PictureName" type="xs:string" minOccurs="0" >
-        <xs:annotation>
-          <xs:documentation>
-            The seller-defined name for the picture. This field is only returned if a &lt;b&gt;PictureName&lt;/b&gt; value was specified in the request. A name for a picture can make it easier to track than an arbitrary, eBay-assigned URL.
-          </xs:documentation>
-          <xs:appinfo>
-            <CallInfo>
-              <CallName>UploadSiteHostedPictures</CallName>
-              <Returned>Conditionally</Returned>
-            </CallInfo>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="PictureSet" type="ns:PictureSetCodeType"  minOccurs="0" >
-        <xs:annotation>
-          <xs:documentation>
-            This enumeration value indicates the size of the generated picture. This value may differ from the one specified in the request (e.g. if a Supersize image cannot be generated).
-          </xs:documentation>
-          <xs:appinfo>
-            <CallInfo>
-              <CallName>UploadSiteHostedPictures</CallName>
-              <Returned>Always</Returned>
-            </CallInfo>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="PictureFormat" type="ns:PictureFormatCodeType"  minOccurs="0" >
-        <xs:annotation>
-          <xs:documentation>
-            This enumeration value indicates the image format of the generated image, such as JPG, GIF, or PNG.
-          </xs:documentation>
-          <xs:appinfo>
-            <CallInfo>
-              <CallName>UploadSiteHostedPictures</CallName>
-              <Returned>Always</Returned>
-            </CallInfo>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="FullURL" type="xs:anyURI" minOccurs="0" >
-        <xs:annotation>
-          <xs:documentation>
-            This is the full URL for the uploaded picture on the EPS server. This value should be stored by the seller, as this URL will be needed when create, revise, or relist an item and add this image to the listing.
-          </xs:documentation>
-          <xs:appinfo>
-            <CallInfo>
-              <CallName>UploadSiteHostedPictures</CallName>
-              <Returned>Always</Returned>
-            </CallInfo>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="BaseURL" type="xs:anyURI" minOccurs="0" >
-        <xs:annotation>
-          <xs:documentation>
-            This is the truncated version of the full URL.
-          </xs:documentation>
-          <xs:appinfo>
-            <CallInfo>
-              <CallName>UploadSiteHostedPictures</CallName>
-              <Returned>Always</Returned>
-            </CallInfo>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="PictureSetMember" type="ns:PictureSetMemberType"  minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:documentation>
-            The URL and size information for each generated image.
-          </xs:documentation>
-          <xs:appinfo>
-            <CallInfo>
-              <CallName>UploadSiteHostedPictures</CallName>
-              <Returned>Always</Returned>
-            </CallInfo>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="ExternalPictureURL" type="xs:anyURI" minOccurs="0">
-      	<xs:annotation>
-      		<xs:documentation>
-      			The URL of the external Web site hosting the uploaded photo. This field is returned if an &lt;b&gt;ExternalPictureURL&lt;/b&gt; is provided in the call request.
-						&lt;br&gt;
-      		</xs:documentation>
-      		<xs:appinfo>
-      			<maxLength>500</maxLength>
-      			<maxOccurs>1</maxOccurs>
-      			<CallInfo>
-      				<CallName>UploadSiteHostedPictures</CallName>
-      				<Returned>Conditionally</Returned>
-      			</CallInfo>
-      		</xs:appinfo>
-      	</xs:annotation>
-      </xs:element>
-      <xs:element name="UseByDate" type="xs:dateTime" minOccurs="0">
-      	<xs:annotation>
-      		<xs:documentation>
-      		  This timestamp indicates when the picture must be uploaded with an eBay listing before it is purged from the EPS server.
-      		  &lt;br&gt;
-						&lt;br&gt;
-      			By default, unpublished pictures (not associated with an active eBay listing) are kept on the EPS server for thirty days.
-      		</xs:documentation>
-      		<xs:appinfo>
-      			<CallInfo>
-      				<CallName>UploadSiteHostedPictures</CallName>
-      				<Returned>Always</Returned>
-      			</CallInfo>
-      		</xs:appinfo>
-      	</xs:annotation>
-      </xs:element>
-      <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-<!--
-
 ##### from file eBLBaseComponents/public/SortOrderCodeList.xsd #####
 
 -->
@@ -82347,7 +81830,7 @@ Requirements to become Top Rated&lt;/a&gt;&lt;/li&gt;
 					Services and self-hosted images can never be combined into the same variation
 					specific picture set. To specify more than one image, use
 					multiple &lt;b&gt;PictureURL&lt;/b&gt; fields, passing in a distinct URL in each
-					of those fields. This field cannot have an empty/null value. The &lt;b&gt;UploadSiteHostedPictures&lt;/b&gt; call can be used to upload pictures to EPS. Note that if pictures are externally-hosted, they must be hosted on a site that is using the 'https' protocol.
+					of those fields. This field cannot have an empty/null value. Use the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile" target="_blank"&gt;&lt;b&gt;createImageFromFile&lt;/b&gt;&lt;/a&gt; method of the &lt;a href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank"&gt;Media API&lt;/a&gt; to upload images to eBay and use the returned EPS-hosted image URL. Note that if pictures are externally-hosted, they must be hosted on a site that is using the 'https' protocol.
 					&lt;br&gt;&lt;br&gt;
 					The image specified in the first &lt;b&gt;PictureURL&lt;/b&gt; field is also used as the thumbnail image for applicable variations. For example, if the picture set contains pictures of red
 					shirts (i.e., VariationSpecificName=Color and VariationSpecificValue=Red), the
@@ -84092,12 +83575,6 @@ Requirements to become Top Rated&lt;/a&gt;&lt;/li&gt;
 	<wsdl:message name="SetUserPreferencesRequest">
 		<wsdl:part name="SetUserPreferencesRequest" element="ns:SetUserPreferencesRequest"/>
 	</wsdl:message>
-	<wsdl:message name="UploadSiteHostedPicturesResponse">
-		<wsdl:part name="UploadSiteHostedPicturesResponse" element="ns:UploadSiteHostedPicturesResponse"/>
-	</wsdl:message>
-	<wsdl:message name="UploadSiteHostedPicturesRequest">
-		<wsdl:part name="UploadSiteHostedPicturesRequest" element="ns:UploadSiteHostedPicturesRequest"/>
-	</wsdl:message>
 	<wsdl:message name="VerifyAddFixedPriceItemResponse">
 		<wsdl:part name="VerifyAddFixedPriceItemResponse" element="ns:VerifyAddFixedPriceItemResponse"/>
 	</wsdl:message>
@@ -84399,10 +83876,6 @@ Requirements to become Top Rated&lt;/a&gt;&lt;/li&gt;
 		<wsdl:operation name="SetUserPreferences">
 			<wsdl:input message="ns:SetUserPreferencesRequest"/>
 			<wsdl:output message="ns:SetUserPreferencesResponse"/>
-		</wsdl:operation>
-		<wsdl:operation name="UploadSiteHostedPictures">
-			<wsdl:input message="ns:UploadSiteHostedPicturesRequest"/>
-			<wsdl:output message="ns:UploadSiteHostedPicturesResponse"/>
 		</wsdl:operation>
 		<wsdl:operation name="VerifyAddFixedPriceItem">
 			<wsdl:input message="ns:VerifyAddFixedPriceItemRequest"/>
@@ -85183,17 +84656,6 @@ Requirements to become Top Rated&lt;/a&gt;&lt;/li&gt;
 				<wsdlsoap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="UploadSiteHostedPictures">
-			<wsdlsoap:operation soapAction=""/>
-			<wsdl:input>
-				<wsdlsoap:header use="literal" message="ns:RequesterCredentials" part="RequesterCredentials"/>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:input>
-			<wsdl:output>
-				<wsdlsoap:header use="literal" message="ns:RequesterCredentials" part="RequesterCredentials"/>
-				<wsdlsoap:body use="literal"/>
-			</wsdl:output>
-		</wsdl:operation>
 		<wsdl:operation name="VerifyAddFixedPriceItem">
 			<wsdlsoap:operation soapAction=""/>
 			<wsdl:input>
@@ -85241,7 +84703,7 @@ Requirements to become Top Rated&lt;/a&gt;&lt;/li&gt;
 	</wsdl:binding>
 	<wsdl:service name="eBayAPIInterfaceService">
 			<wsdl:documentation>
-				<Version>1487</Version>
+				<Version>1489</Version>
 			</wsdl:documentation>
 			<wsdl:port binding="ns:eBayAPISoapBinding" name="eBayAPI">
 				<wsdlsoap:address location="https://api.ebay.com/wsapi"/>

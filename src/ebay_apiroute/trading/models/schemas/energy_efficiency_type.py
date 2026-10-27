@@ -27,7 +27,7 @@ class EnergyEfficiencyType(BaseModel):
 
     # The URL to the Energy Efficiency Label image that is applicable to an item. This field is
     # required if an Energy Efficiency Label is provided. The URL provided must be an eBay
-    # Picture Services (EPS) URL only. You can upload pictures to eBay Picture Services via the
+    # Picture Services (EPS) URL only. Use the <a
     image_url: str | None = Field(None, alias="ImageURL")
 
     # A brief verbal summary of the information included on the Energy Efficiency Label for an
@@ -37,5 +37,5 @@ class EnergyEfficiencyType(BaseModel):
 
     # The URL to the Product Information Sheet that provides complete manufacturer-provided
     # efficiency information about an item. This field is required if an Energy Efficiency Label
-    # is provided. The URL provided must be an eBay Picture Services (EPS) URL only. You can
+    # is provided. The URL provided must be an eBay Picture Services (EPS) URL only. Use the <a
     product_informationsheet: str | None = Field(None, alias="ProductInformationsheet")

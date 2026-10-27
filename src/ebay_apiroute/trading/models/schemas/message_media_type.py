@@ -11,15 +11,17 @@ __all__ = ["MessageMediaType"]
 
 class MessageMediaType(BaseModel):
     """Container for the image file that is to be sent in a message, which lets sellers share
-    photos in messages using the API. The photo must be uploaded by the seller or buyer to
-    <a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/uploadsitehostedpi
-    ctures.html">EPS (eBay Picture Services)</a> using a separate API call or the web
-    flow. After the image is on the eBay server, you can use <b>AddMemberMessage</b> calls
-    to pass the URL of the image in a message. The uploaded images will be available as
-    part of the email as a thumbnail image. Clicking on the thumbnail, opens a larger
-    version of the image in a filmstrip. The image name will be displayed on the title of
-    the filmstrip component. These uploaded images will also be returned as
-    <b>MessageMediaType</b> arrays in the <b>GetMemberMessages</b> and
+    photos in messages using the API. The photo must be uploaded by the seller or buyer
+    using the <a
+    href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile"
+    target="_blank">createImageFromFile</a> method of the <a
+    href="https://developer.ebay.com/develop/api/sell/media_api" target="_blank">Media
+    API</a> or the web flow. After the image is on the eBay server, you can use
+    <b>AddMemberMessage</b> calls to pass the URL of the image in a message. The uploaded
+    images will be available as part of the email as a thumbnail image. Clicking on the
+    thumbnail, opens a larger version of the image in a filmstrip. The image name will be
+    displayed on the title of the filmstrip component. These uploaded images will also be
+    returned as <b>MessageMediaType</b> arrays in the <b>GetMemberMessages</b> and
     <b>GetMyMessages</b> API response. It doesn't matter if an image was uploaded using
     the web flow or using the API, it can be accessed using either the web flow or the API
     and web.
@@ -27,9 +29,9 @@ class MessageMediaType(BaseModel):
 
     model_config = ConfigDict(defer_build=True, populate_by_name=True, protected_namespaces=())
 
-    # URL of an image to be included in a message. The image must be uploaded to <a href="https:
-    # //developer.ebay.com/devzone/xml/docs/reference/ebay/uploadsitehostedpictures.html">EPS
-    # (eBay Picture Services)</a> using a separate API call or the web flow. This URL will be
+    # URL of an image to be included in a message. The image must be uploaded using the <a
+    # href="https://developer.ebay.com/develop/api/sell/media_api/image/createimagefromfile"
+    # target="_blank">createImageFromFile</a> method of the <a
     media_url: str | None = Field(None, alias="MediaURL")
 
     # The name of the image. This will be displayed on the flimstrip.
