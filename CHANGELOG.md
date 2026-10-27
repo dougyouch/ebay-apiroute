@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/dougyouch/ebay-apiroute/compare/v0.2.0...v0.3.0) (2026-10-27)
+
+
+### Features
+
+* **specs:** update clients from eBay's latest API specs ([aca3fb1](https://github.com/dougyouch/ebay-apiroute/commit/aca3fb11e27e1e7dfbc827127f5c4de4e4feb4ca))
+
 ## [0.2.0](https://github.com/dougyouch/ebay-apiroute/compare/v0.1.1...v0.2.0) (2026-10-27)
 
 
