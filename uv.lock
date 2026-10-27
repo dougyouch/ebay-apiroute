@@ -27,19 +27,20 @@ wheels = [
 
 [[package]]
 name = "apiroute"
-version = "1.2.0"
+version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "httpx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/66/b1/7aef1f1cde640d0de306d61d95fef9b4428916a66e08f82dc062d888bfaa/apiroute-1.2.0.tar.gz", hash = "sha256:81f82dde3127bc9e3fe16c0ee383abf5d08d9f244cb3d89c640e6f2b5b9ec3af", size = 140351, upload-time = "2026-10-23T14:23:53.476Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/03/ee/d2294d298420b0a3626c69f370f81580413d07dac36079616d7c2062253e/apiroute-2.2.0.tar.gz", hash = "sha256:bab195bb98a16561d5c41a9adca00ff961d030337c3433d57f102324c7420828", size = 354299, upload-time = "2026-10-27T16:02:20.363Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d5/c5/b4be136e842a4c0a8949727cbf9cbf4c9e6b637533a3c8fe3e1dafd66e21/apiroute-1.2.0-py3-none-any.whl", hash = "sha256:402902d9620e8dbf5cb1e176ae438516073a5722dbfb93518a2c926938d28201", size = 108003, upload-time = "2026-10-23T14:23:52.48Z" },
+    { url = "https://files.pythonhosted.org/packages/d3/b9/b9801b25fe5175cc6ff771d0e12005043d5c2bbbae21196d9f50c7ed56da/apiroute-2.2.0-py3-none-any.whl", hash = "sha256:379931b30f321e8dd50e5d07f352609cadf58fb6e08fb0beb71675507e463d17", size = 184770, upload-time = "2026-10-27T16:02:19.016Z" },
 ]
 
 [package.optional-dependencies]
 codegen = [
     { name = "defusedxml" },
+    { name = "graphql-core" },
     { name = "pydantic" },
     { name = "pyyaml" },
 ]
@@ -92,13 +93,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "apiroute", extras = ["soap"], specifier = ">=1.2.0" },
-    { name = "pydantic", specifier = ">=2" },
+    { name = "apiroute", extras = ["soap"], specifier = ">=2.2.0" },
+    { name = "pydantic", specifier = ">=2.6" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "apiroute", extras = ["codegen"], specifier = ">=1.2.0" },
+    { name = "apiroute", extras = ["codegen"], specifier = ">=2.2.0" },
     { name = "pytest", specifier = ">=8" },
     { name = "ruff", specifier = ">=0.6" },
 ]
@@ -113,6 +114,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219", size = 30371, upload-time = "2025-11-21T23:01:54.787Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8a/0e/97c33bf5009bdbac74fd2beace167cab3f978feb69cc36f1ef79360d6c4e/exceptiongroup-1.3.1-py3-none-any.whl", hash = "sha256:a7a39a3bd276781e98394987d3a5701d0c4edffb633bb7a5144577f82c773598", size = 16740, upload-time = "2025-11-21T23:01:53.443Z" },
+]
+
+[[package]]
+name = "graphql-core"
+version = "3.3.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a4/91/223fbace7c8648690d7fb77855e29bd248c9ed1e0833ed3002ab29bc1441/graphql_core-3.3.1.tar.gz", hash = "sha256:8d9b6f95fb66b58b260904cf9e191f422782620533ec8fa0c96ab941b6659a2a", size = 751402, upload-time = "2026-10-25T09:34:09.764Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/57/0e/e51b006267e7fa785abf5d1f86a7d60b84f7f893e3ba4fe23df9be2000cf/graphql_core-3.3.1-py3-none-any.whl", hash = "sha256:43ebcd0d9a0662a71b1a2f6562ba863d253057ec11cbc45835b2e2683a0a3770", size = 349047, upload-time = "2026-10-25T09:34:07.725Z" },
 ]
 
 [[package]]
