@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/dougyouch/ebay-apiroute/compare/v0.1.1...v0.2.0) (2026-10-27)
+
+
+### Features
+
+* retry calls that are safe to repeat after a read timeout ([9a77c24](https://github.com/dougyouch/ebay-apiroute/commit/9a77c24bf8b9f1fc8f79a64ab293703b2a3250bf))
+
+
+### Bug Fixes
+
+* regenerate with apiroute 2.2 and require pydantic 2.6 ([1ff0723](https://github.com/dougyouch/ebay-apiroute/commit/1ff072329e3de7d4d495cd06990e78b92d417b1c))
+
 ## [0.1.1](https://github.com/dougyouch/ebay-apiroute/compare/v0.1.0...v0.1.1) (2026-10-26)
 
 
