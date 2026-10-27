@@ -1,9 +1,12 @@
 name: Release
 
-# release-please keeps a release PR open that bumps the version in pyproject.toml and
-# CHANGELOG.md from conventional commits. Merging it tags the release, creates the GitHub
-# release and publishes the package to PyPI (trusted publishing, environment "pypi").
+# Releases are hands-off. release-please keeps a release PR open that bumps the version in
+# pyproject.toml and CHANGELOG.md from conventional commits; this workflow tests that PR,
+# merges it, has release-please tag it and create the GitHub release, and publishes to PyPI
+# (trusted publishing, environment "pypi"). All in one run: a merge made with GITHUB_TOKEN
+# doesn't trigger the push event that would otherwise release it.
 # It also runs after Build, whose commits (pushed by a workflow) don't trigger push events.
+# A release PR merged by hand still releases through the push event.
 # Run it manually (workflow_dispatch) to retry publishing the current version.
 on:
   push:
@@ -61,15 +64,52 @@ jobs:
           git commit -m 'build(deps): sync uv.lock version' uv.lock
           git push
 
-  # The release PR is opened with GITHUB_TOKEN, which doesn't trigger CI on it,
-  # so run the suite here before anything is published.
+  # The release PR is opened with GITHUB_TOKEN, which doesn't trigger CI on it, so test its
+  # branch here (after the lockfile sync), then merge it.
+  release-pr-ci:
+    needs: [release-please, sync-lockfile]
+    if: needs.release-please.outputs.pr_branch != ''
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.release-please.outputs.pr_branch }}
+
+  merge-release-pr:
+    needs: [release-please, release-pr-ci]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # merge, tags and the GitHub release
+      issues: write # release labels
+      pull-requests: write # merge the release PR
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Merge the release PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr merge "${{ needs.release-please.outputs.pr_branch }}" --rebase --repo "$GITHUB_REPOSITORY"
+      # The merge doesn't trigger a push event, so tag and create the release now
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # A release PR merged by hand: run the suite before anything is published.
   ci:
     needs: release-please
     if: needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/ci.yml
 
   publish:
-    needs: [release-please, ci]
+    needs: [release-please, ci, merge-release-pr]
+    # after a hand merge (ci), an automatic one (merge-release-pr), or a manual retry; never
+    # when something it needs failed
+    if: >-
+      always() && !failure() && !cancelled() &&
+      (needs.release-please.outputs.release_created == 'true' ||
+       needs.merge-release-pr.outputs.release_created == 'true' ||
+       github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     environment:
       name: pypi
@@ -81,7 +121,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # the new tag on release; the dispatched commit on a manual retry
-          ref: ${{ needs.release-please.outputs.tag_name || github.sha }}
+          ref: ${{ needs.merge-release-pr.outputs.tag_name || needs.release-please.outputs.tag_name || github.sha }}
           persist-credentials: false
       - uses: astral-sh/setup-uv@v6
 
