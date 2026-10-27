@@ -109,7 +109,7 @@ Nothing under `src/ebay_apiroute/` is written by hand except `auth.py` and `__in
 2. If anything changed, it commits the result to `main`:
    - `feat(specs): ...` when eBay changed a spec, which produces a minor release.
    - `fix(codegen): ...` when only a newer apiroute changed the generated code, which produces a patch release.
-3. **[Release](.github/workflows/release.yml)** (release-please) then updates its release PR. Merging that PR publishes a new version to [PyPI](https://pypi.org/project/ebay-apiroute/).
+3. **[Release](.github/workflows/release.yml)** (release-please) then updates its release PR, tests it, merges it and publishes the new version to [PyPI](https://pypi.org/project/ebay-apiroute/). No one has to do anything: a new eBay spec or apiroute release reaches PyPI on its own once the tests pass.
 
 [CI](.github/workflows/ci.yml) checks every push. It lints, runs the tests on Python 3.10 to 3.14, and regenerates from the committed specs to confirm the committed code matches them exactly.
 
