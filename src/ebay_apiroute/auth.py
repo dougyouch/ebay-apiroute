@@ -15,6 +15,12 @@ from ebay_apiroute.trading_version import TRADING_VERSION
 
 Token = str | Callable[[], str]
 
+# Trading calls that only read (or validate) and so are safe to retry
+READ_ONLY_CALLS = ("Get", "Verify")
+
+# REST methods eBay implements as create-or-replace and delete, safe to repeat after a timeout
+SAFE_TO_REPEAT = frozenset({"PUT", "DELETE"})
+
 
 class EbayAuth(Client):
     """OAuth for eBay's REST APIs.
@@ -24,7 +30,8 @@ class EbayAuth(Client):
 
     token is an application or user access token, or a function returning the current one
     (so a refreshing OAuth helper can be passed directly). marketplace_id is sent as the
-    X-EBAY-C-MARKETPLACE-ID header. sandbox=True uses eBay's sandbox hosts.
+    X-EBAY-C-MARKETPLACE-ID header. sandbox=True uses eBay's sandbox hosts. With retries on,
+    GET, PUT and DELETE calls are retried after a read timeout; POSTs aren't.
     """
 
     headers = {
@@ -40,14 +47,21 @@ class EbayAuth(Client):
         sandbox: bool = False,
         **kwargs: Any,
     ):
-        if sandbox and "base_url" not in kwargs and type(self)._config.base_url:
-            kwargs["base_url"] = sandbox_url(type(self)._config.base_url)
+        base_url = type(self)._config.base_url
+        if sandbox and "base_url" not in kwargs and base_url:
+            kwargs["base_url"] = sandbox_url(base_url)
         super().__init__(**kwargs)
         self._token = token
         self.marketplace_id = marketplace_id
 
     def current_token(self) -> str | None:
         return self._token() if callable(self._token) else self._token
+
+    def idempotent(self, request: RequestSpec) -> bool | None:
+        """apiroute retries only GET, HEAD and OPTIONS after a read timeout. eBay's PUTs
+        create or replace and its DELETEs delete, so repeating them is safe too; POSTs (which
+        create offers, publish listings and the like) stay unrepeated."""
+        return True if request.method in SAFE_TO_REPEAT else None
 
 
 class TradingAuth(Client):
@@ -58,7 +72,8 @@ class TradingAuth(Client):
 
     The token (an Auth'n'Auth token, or a function returning one) goes in the envelope's
     RequesterCredentials header; eBay's SOAP endpoint also wants the call name, site,
-    application ID and version in the query string.
+    application ID and version in the query string. With retries on, read-only calls are
+    retried after a read timeout; writes aren't, so a listing can't be added twice.
     """
 
     def __init__(
@@ -71,8 +86,9 @@ class TradingAuth(Client):
         sandbox: bool = False,
         **kwargs: Any,
     ):
-        if sandbox and "base_url" not in kwargs and type(self)._config.base_url:
-            kwargs["base_url"] = sandbox_url(type(self)._config.base_url)
+        base_url = type(self)._config.base_url
+        if sandbox and "base_url" not in kwargs and base_url:
+            kwargs["base_url"] = sandbox_url(base_url)
         super().__init__(**kwargs)
         self._token = token
         self.app_id = app_id
@@ -84,6 +100,12 @@ class TradingAuth(Client):
 
     def soap_header(self, operation: str) -> dict[str, Any]:
         return {"RequesterCredentials": {"eBayAuthToken": self.current_token()}}
+
+    def idempotent(self, request: RequestSpec) -> bool | None:
+        """Every Trading call is a SOAP POST, which apiroute doesn't retry after a read
+        timeout. The read-only ones (Get..., and Verify..., which validate a listing without
+        creating it) are safe to repeat, so they are; writes such as AddItem aren't."""
+        return True if request.operation.startswith(READ_ONLY_CALLS) else None
 
     def on_request(self, request: RequestSpec) -> RequestSpec:
         query = [
