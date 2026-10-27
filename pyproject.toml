@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Office/Business :: Financial :: Point-Of-Sale",
     "Typing :: Typed",
 ]
-dependencies = ["apiroute[soap]>=1.2.0", "pydantic>=2"]
+dependencies = ["apiroute[soap]>=2.2.0", "pydantic>=2.6"]
 
 [project.urls]
 Homepage = "https://github.com/dougyouch/ebay-apiroute"
@@ -32,7 +32,7 @@ Issues = "https://github.com/dougyouch/ebay-apiroute/issues"
 Changelog = "https://github.com/dougyouch/ebay-apiroute/blob/main/CHANGELOG.md"
 
 [dependency-groups]
-dev = ["apiroute[codegen]>=1.2.0", "pytest>=8", "ruff>=0.6"]
+dev = ["apiroute[codegen]>=2.2.0", "pytest>=8", "ruff>=0.6"]
 
 [build-system]
 requires = ["hatchling"]
