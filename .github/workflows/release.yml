@@ -77,6 +77,7 @@ jobs:
     needs: [release-please, release-pr-ci]
     runs-on: ubuntu-latest
     permissions:
+      actions: write # cancel the release PR's waiting CI runs
       contents: write # merge, tags and the GitHub release
       issues: write # release labels
       pull-requests: write # merge the release PR
@@ -84,6 +85,20 @@ jobs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
+      # GitHub holds CI on the bot's release PR for approval. Those runs never start, and once
+      # the merge deletes the branch they fail with "a workflow file issue". release-pr-ci has
+      # tested the branch, so cancel them rather than leave red runs behind.
+      - name: Cancel CI runs waiting on the release PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ needs.release-please.outputs.pr_branch }}
+        run: |
+          waiting=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml --branch "$BRANCH" \
+            --event pull_request --limit 20 --json databaseId,status \
+            --jq '.[] | select(.status != "completed") | .databaseId')
+          for run in $waiting; do
+            gh run cancel "$run" --repo "$GITHUB_REPOSITORY" || echo "run $run already finished"
+          done
       - name: Merge the release PR
         env:
           GH_TOKEN: ${{ github.token }}
