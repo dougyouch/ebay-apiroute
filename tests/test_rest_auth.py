@@ -65,3 +65,27 @@ def test_typed_layer(transport, recorder):
     )
     assert item.sku == "SKU1" and item.condition == "NEW"
     assert item.availability.ship_to_location_availability.quantity == 3
+
+
+@pytest.mark.parametrize(
+    "call, attempts",
+    [
+        (lambda api: api.offer.update_offer("o1", body={}, content_language="en-US"), 2),  # PUT
+        (lambda api: api.offer.delete_offer("o1"), 2),  # DELETE
+        (lambda api: api.offer.create_offer(body={}, content_language="en-US"), 1),  # POST
+    ],
+)
+def test_put_and_delete_are_retried_after_a_read_timeout_and_post_is_not(call, attempts):
+    from apiroute import Retries
+    from apiroute.testing import MockTransport
+
+    mock = MockTransport()
+    mock.respond(httpx.ReadTimeout("slow"), httpx.Response(200, json={}))
+    api = SellInventoryApi(token="t", transport=mock).with_options(
+        retries=Retries(attempts=3, sleep=0)
+    )
+    try:
+        call(api)
+    except httpx.ReadTimeout:
+        pass
+    assert len(mock.calls) == attempts

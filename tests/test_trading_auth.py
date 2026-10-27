@@ -45,3 +45,24 @@ def test_sandbox(transport, recorder):
     recorder.respond(httpx.Response(200, content=RESPONSE.encode()))
     TradingApi("t", app_id="a", sandbox=True, transport=transport).get_item(body={"ItemID": "1"})
     assert recorder.last.url.host == "api.sandbox.ebay.com"
+
+
+def test_read_only_calls_are_retried_after_a_read_timeout_and_writes_are_not():
+    from apiroute import Retries
+    from apiroute.testing import MockTransport
+
+    def attempts(method_name: str) -> int:
+        mock = MockTransport()
+        mock.respond(httpx.ReadTimeout("slow"), httpx.Response(200, content=RESPONSE.encode()))
+        trading = TradingApi("t", app_id="a", transport=mock)
+        call = getattr(trading.with_options(retries=Retries(attempts=3, sleep=0)), method_name)
+        try:
+            call(body={"ItemID": "123"})
+        except httpx.ReadTimeout:
+            pass
+        return len(mock.calls)
+
+    assert attempts("get_item") == 2  # a read: retried
+    assert attempts("verify_add_item") == 2  # validates without listing: retried
+    assert attempts("add_item") == 1  # a write: not repeated
+    assert attempts("revise_item") == 1

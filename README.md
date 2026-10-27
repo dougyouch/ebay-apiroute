@@ -95,6 +95,8 @@ A SOAP fault raises `apiroute.soap.SoapFault`. The API version comes from the WS
 
 Errors raise `apiroute.UnexpectedResponse`, which carries the `.response`. For retries, transports and other client options, see [apiroute's README](https://github.com/dougyouch/apiroute#readme).
 
+Retries are off unless you turn them on, for example with `api.with_options(retries=3)`, or `retries = Retries(...)` in a subclass. Once on, failed connections are always retried. After a read timeout, though, only calls that are safe to repeat are retried: REST `GET`, `PUT` (eBay's create-or-replace) and `DELETE`, and the Trading API's read-only calls (`Get*`, and the `Verify*` calls, which validate without listing). Writes such as REST `POST`s and Trading's `AddItem` aren't, so an offer or a listing can't be created twice.
+
 ## How this repository stays up to date
 
 Nothing under `src/ebay_apiroute/` is written by hand except `auth.py` and `__init__.py`. Everything else is generated from the API descriptions listed in [`apis.yaml`](apis.yaml):
