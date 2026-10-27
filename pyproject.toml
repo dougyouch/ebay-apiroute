@@ -1,6 +1,6 @@
 [project]
 name = "ebay-apiroute"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python clients for eBay's REST and Trading APIs, generated with apiroute from eBay's published API specs."
 readme = "README.md"
 license = "MIT"
