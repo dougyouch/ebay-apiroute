@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.2](https://github.com/dougyouch/ebay-apiroute/compare/v0.3.1...v0.3.2) (2026-10-28)
+
+### Other changes
+
+- ci: each release adds its commits to CHANGELOG.md (6045e0e)
+
 ## [0.3.1](https://github.com/dougyouch/ebay-apiroute/compare/v0.3.0...v0.3.1) (2026-10-28)
 
 ### Other changes
