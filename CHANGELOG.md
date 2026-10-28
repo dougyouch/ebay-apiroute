@@ -1,5 +1,7 @@
 # Changelog
 
+Releases after 0.3.0 are listed on [GitHub Releases](https://github.com/dougyouch/ebay-apiroute/releases), with notes from their commits: every merge to main is released on its own. Earlier releases are below.
+
 ## [0.3.0](https://github.com/dougyouch/ebay-apiroute/compare/v0.2.0...v0.3.0) (2026-10-27)
 
 
