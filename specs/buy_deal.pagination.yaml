@@ -1,0 +1,14 @@
+# Which buy_deal operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: dealItems
+  has_parameter: [offset]
+  response: {has: [total, dealItems]}
+  paginate: {type: offset, total: total, items: dealItems}
+- name: eventItems
+  has_parameter: [offset]
+  response: {has: [total, eventItems]}
+  paginate: {type: offset, total: total, items: eventItems}
+- name: events
+  has_parameter: [offset]
+  response: {has: [total, events]}
+  paginate: {type: offset, total: total, items: events}

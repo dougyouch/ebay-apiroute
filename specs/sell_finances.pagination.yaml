@@ -1,0 +1,18 @@
+# Which sell_finances operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: billingActivities
+  has_parameter: [offset]
+  response: {has: [total, billingActivities]}
+  paginate: {type: offset, total: total, items: billingActivities}
+- name: orders
+  has_parameter: [offset]
+  response: {has: [total, orders]}
+  paginate: {type: offset, total: total, items: orders}
+- name: payouts
+  has_parameter: [offset]
+  response: {has: [total, payouts]}
+  paginate: {type: offset, total: total, items: payouts}
+- name: transactions
+  has_parameter: [offset]
+  response: {has: [total, transactions]}
+  paginate: {type: offset, total: total, items: transactions}

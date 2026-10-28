@@ -12,6 +12,7 @@ apis:
     module: buy.browse
     client: BuyBrowseApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/buy_browse.pagination.yaml   # list operations gain <name>_all methods
 
   - name: buy_deal
     title: Deal API
@@ -21,6 +22,7 @@ apis:
     module: buy.deal
     client: BuyDealApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/buy_deal.pagination.yaml   # list operations gain <name>_all methods
 
   - name: buy_feed
     title: Feed API (Buy)
@@ -66,6 +68,7 @@ apis:
     module: commerce.catalog
     client: CommerceCatalogApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/commerce_catalog.pagination.yaml   # list operations gain <name>_all methods
 
   - name: commerce_charity
     title: Charity API
@@ -75,6 +78,7 @@ apis:
     module: commerce.charity
     client: CommerceCharityApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/commerce_charity.pagination.yaml   # list operations gain <name>_all methods
 
   - name: commerce_feedback
     title: Feedback API
@@ -111,6 +115,7 @@ apis:
     module: commerce.message
     client: CommerceMessageApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/commerce_message.pagination.yaml   # list operations gain <name>_all methods
 
   - name: commerce_notification
     title: Notification API
@@ -120,6 +125,7 @@ apis:
     module: commerce.notification
     client: CommerceNotificationApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/commerce_notification.pagination.yaml   # list operations gain <name>_all methods
 
   - name: commerce_taxonomy
     title: Taxonomy API
@@ -147,6 +153,7 @@ apis:
     module: commerce.vero
     client: CommerceVeroApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/commerce_vero.pagination.yaml   # list operations gain <name>_all methods
 
   - name: developer_analytics
     title: Developer Analytics API
@@ -165,6 +172,7 @@ apis:
     module: sell.account
     client: SellAccountApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_account.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_analytics
     title: Analytics API (Sell)
@@ -183,6 +191,7 @@ apis:
     module: sell.feed
     client: SellFeedApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_feed.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_finances
     title: Finances API
@@ -192,6 +201,7 @@ apis:
     module: sell.finances
     client: SellFinancesApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_finances.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_fulfillment
     title: Fulfillment API
@@ -201,6 +211,7 @@ apis:
     module: sell.fulfillment
     client: SellFulfillmentApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_fulfillment.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_inventory
     title: Inventory API
@@ -210,6 +221,7 @@ apis:
     module: sell.inventory
     client: SellInventoryApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_inventory.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_logistics
     title: Logistics API
@@ -228,6 +240,7 @@ apis:
     module: sell.marketing
     client: SellMarketingApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_marketing.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_metadata
     title: Metadata API
@@ -246,6 +259,7 @@ apis:
     module: sell.negotiation
     client: SellNegotiationApi
     base_class: ebay_apiroute.auth:EbayAuth
+    pagination: specs/sell_negotiation.pagination.yaml   # list operations gain <name>_all methods
 
   - name: sell_recommendation
     title: Recommendation API

@@ -1,0 +1,6 @@
+# Which sell_negotiation operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: eligibleItems
+  has_parameter: [offset]
+  response: {has: [total, eligibleItems]}
+  paginate: {type: offset, total: total, items: eligibleItems}

@@ -1,0 +1,10 @@
+# Which sell_fulfillment operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: orders
+  has_parameter: [offset]
+  response: {has: [total, orders]}
+  paginate: {type: offset, total: total, items: orders}
+- name: paymentDisputeSummaries
+  has_parameter: [offset]
+  response: {has: [total, paymentDisputeSummaries]}
+  paginate: {type: offset, total: total, items: paymentDisputeSummaries}

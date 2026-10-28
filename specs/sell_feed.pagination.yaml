@@ -1,0 +1,14 @@
+# Which sell_feed operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: scheduleTemplates
+  has_parameter: [offset]
+  response: {has: [total, scheduleTemplates]}
+  paginate: {type: offset, total: total, items: scheduleTemplates}
+- name: schedules
+  has_parameter: [offset]
+  response: {has: [total, schedules]}
+  paginate: {type: offset, total: total, items: schedules}
+- name: tasks
+  has_parameter: [offset]
+  response: {has: [total, tasks]}
+  paginate: {type: offset, total: total, items: tasks}

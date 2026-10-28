@@ -1,0 +1,46 @@
+# Which sell_marketing operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: adGroups
+  has_parameter: [offset]
+  response: {has: [total, adGroups]}
+  paginate: {type: offset, total: total, items: adGroups}
+- name: ads
+  has_parameter: [offset]
+  response: {has: [total, ads]}
+  paginate: {type: offset, total: total, items: ads}
+- name: audiences
+  has_parameter: [offset]
+  response: {has: [total, audiences]}
+  paginate: {type: offset, total: total, items: audiences}
+- name: campaigns
+  has_parameter: [offset]
+  response: {has: [total, campaigns]}
+  paginate: {type: offset, total: total, items: campaigns}
+- name: keywords
+  has_parameter: [offset]
+  response: {has: [total, keywords]}
+  paginate: {type: offset, total: total, items: keywords}
+- name: listings
+  has_parameter: [offset]
+  response: {has: [total, listings]}
+  paginate: {type: offset, total: total, items: listings}
+- name: negativeKeywords
+  has_parameter: [offset]
+  response: {has: [total, negativeKeywords]}
+  paginate: {type: offset, total: total, items: negativeKeywords}
+- name: promotionReports
+  has_parameter: [offset]
+  response: {has: [total, promotionReports]}
+  paginate: {type: offset, total: total, items: promotionReports}
+- name: promotions
+  has_parameter: [offset]
+  response: {has: [total, promotions]}
+  paginate: {type: offset, total: total, items: promotions}
+- name: reportTasks
+  has_parameter: [offset]
+  response: {has: [total, reportTasks]}
+  paginate: {type: offset, total: total, items: reportTasks}
+- name: suggestedItems
+  has_parameter: [offset]
+  response: {has: [total, suggestedItems]}
+  paginate: {type: offset, total: total, items: suggestedItems}

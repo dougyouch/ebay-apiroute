@@ -1,0 +1,17 @@
+# Which sell_account operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: customPolicies
+  response: {has: [next, customPolicies]}
+  paginate: {type: next_url, path: next, items: customPolicies}
+- name: fulfillmentPolicies
+  response: {has: [next, fulfillmentPolicies]}
+  paginate: {type: next_url, path: next, items: fulfillmentPolicies}
+- name: paymentPolicies
+  response: {has: [next, paymentPolicies]}
+  paginate: {type: next_url, path: next, items: paymentPolicies}
+- name: returnPolicies
+  response: {has: [next, returnPolicies]}
+  paginate: {type: next_url, path: next, items: returnPolicies}
+- name: subscriptions
+  response: {has: [next, subscriptions]}
+  paginate: {type: next_url, path: next, items: subscriptions}

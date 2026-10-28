@@ -28,13 +28,16 @@ api = SellInventoryApi(token="v^1.1#i^1#...", marketplace_id="EBAY_US")
 
 item = api.inventory_item.get_inventory_item("SKU1")  # a dict
 item = api.inventory_item.models.get_inventory_item("SKU1")  # InventoryItemWithSkuLocaleGroupid
-items = await api.inventory_item.models.aio.get_inventory_items(limit="25")
+items = await api.inventory_item.models.aio.get_inventory_items(limit="25")  # one page
+for item in api.inventory_item.models.get_inventory_items_all(limit="100"):  # every page
+    print(item.sku)
 
 sandbox = SellInventoryApi(token=refreshing_token, sandbox=True)  # api.sandbox.ebay.com
 ```
 
 - `marketplace_id` is sent as the `X-EBAY-C-MARKETPLACE-ID` header.
 - `sandbox=True` switches to eBay's sandbox hosts.
+- List operations have a `_all` twin (`get_inventory_items_all`, `get_orders_all`, `item_summary.search_all` …) that takes the same arguments and iterates the items of every page, fetching each page as you go: by `offset` until eBay's `total`, or by the `next` URL where an API pages with continuation tokens. `async for` works through `.aio`, `.pages()` gives whole pages, and `itertools.islice` or `break` stops early. Each API's `specs/<name>.pagination.yaml` sets which operations get one.
 - Getting tokens is up to your application. eBay's [OAuth guide](https://developer.ebay.com/api-docs/static/oauth-tokens.html) covers application tokens (the [client credentials grant](https://developer.ebay.com/api-docs/static/oauth-client-credentials-grant.html)) and user tokens (the [authorization code grant](https://developer.ebay.com/api-docs/static/oauth-authorization-code-grant.html)).
 
 ## Trading API
