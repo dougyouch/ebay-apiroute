@@ -19,7 +19,7 @@ Guidance for AI coding agents (and people) working in this repository.
 | `src/ebay_apiroute/<group>/__init__.py`, `trading_version.py` | Written by `scripts/generate.py` | never |
 | `tests/` | Config checks, REST auth, Trading SOAP | yes |
 | `.github/workflows/` | `ci.yml`, `build.yml` (regenerate and commit), `release.yml` (every push to main: tag, PyPI, GitHub release) |
-| `scripts/next_release.py` | Each release's version and notes, from the commits since the last tag | yes | yes |
+| `scripts/next_release.py` | Each release's version, notes and CHANGELOG.md entry, from the commits since the last tag | yes | yes |
 | `.agent/skills/apiroute-client.md` | Skill for creating and maintaining repos like this one | yes |
 
 ## Rules
@@ -46,7 +46,8 @@ Guidance for AI coding agents (and people) working in this repository.
   4. Run `scripts/generate.py --fetch --only <name>`, then the tests.
 - **A spec change broke generation:** the Build workflow fails before committing anything. Reproduce with `scripts/generate.py --fetch --only <name>`, then fix apiroute or `auth.py`. Patching `specs/` by hand would be overwritten by the next fetch.
 - **Remove an API:** delete its `apis.yaml` entry, its file in `specs/` and its folder under `src/ebay_apiroute/`, then regenerate.
-- **Release:** nothing to do. Every push to main, and every Build commit, is tested, tagged `vX.Y.Z`, published to PyPI (trusted publishing, the `pypi` environment) and given a GitHub release with notes from its commits. Rerunning a failed Release finishes it.
+- **Release:** nothing to do. Every push to main, and every Build commit, is tested, then a `chore(release): vX.Y.Z` commit adds its commits to CHANGELOG.md and is tagged, published to PyPI (trusted publishing, the `pypi` environment) and given a GitHub release with the same notes. Pull before starting your next branch. Rerunning a failed Release finishes it.
+- **Don't edit CHANGELOG.md by hand;** the release commits write it.
 
 ## Skill
 
