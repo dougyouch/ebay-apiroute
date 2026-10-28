@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0](https://github.com/dougyouch/ebay-apiroute/compare/v0.3.2...v0.4.0) (2026-10-28)
+
+### Features
+
+- feat: REST list operations gain _all methods that page through every result (34d6e17)
+
 ## [0.3.2](https://github.com/dougyouch/ebay-apiroute/compare/v0.3.1...v0.3.2) (2026-10-28)
 
 ### Other changes
