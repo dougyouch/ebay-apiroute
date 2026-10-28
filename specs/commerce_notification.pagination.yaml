@@ -1,0 +1,11 @@
+# Which commerce_notification operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: destinations
+  response: {has: [next, destinations]}
+  paginate: {type: next_url, path: next, items: destinations}
+- name: subscriptions
+  response: {has: [next, subscriptions]}
+  paginate: {type: next_url, path: next, items: subscriptions}
+- name: topics
+  response: {has: [next, topics]}
+  paginate: {type: next_url, path: next, items: topics}

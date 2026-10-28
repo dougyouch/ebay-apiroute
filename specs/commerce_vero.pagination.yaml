@@ -1,0 +1,6 @@
+# Which commerce_vero operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: reportedItemDetails
+  has_parameter: [offset]
+  response: {has: [total, reportedItemDetails]}
+  paginate: {type: offset, total: total, items: reportedItemDetails}

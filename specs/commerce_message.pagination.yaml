@@ -1,0 +1,10 @@
+# Which commerce_message operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: conversations
+  has_parameter: [offset]
+  response: {has: [total, conversations]}
+  paginate: {type: offset, total: total, items: conversations}
+- name: messages
+  has_parameter: [offset]
+  response: {has: [total, messages]}
+  paginate: {type: offset, total: total, items: messages}

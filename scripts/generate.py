@@ -89,6 +89,8 @@ def _generate(api: dict, spec: Path, package_dir: Path) -> None:
         command.append("--models")
     if api.get("base_class"):
         command += ["--base-class", api["base_class"]]
+    if api.get("pagination"):
+        command += ["--pagination", str(ROOT / api["pagination"])]
     subprocess.run(command, check=True)
 
 

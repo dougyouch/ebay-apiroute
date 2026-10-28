@@ -1,0 +1,14 @@
+# Which sell_inventory operations get a paginated <name>_all method. eBay pages with offset and
+# limit, giving total and a next URL; rules are tried in order, first match wins.
+- name: inventoryItems
+  has_parameter: [offset]
+  response: {has: [total, inventoryItems]}
+  paginate: {type: offset, total: total, items: inventoryItems}
+- name: locations
+  has_parameter: [offset]
+  response: {has: [total, locations]}
+  paginate: {type: offset, total: total, items: locations}
+- name: offers
+  has_parameter: [offset]
+  response: {has: [total, offers]}
+  paginate: {type: offset, total: total, items: offers}
