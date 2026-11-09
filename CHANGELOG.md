@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1](https://github.com/dougyouch/ebay-apiroute/compare/v0.4.0...v0.4.1) (2026-11-09)
+
+### Fixes
+
+- fix(codegen): regenerate clients with apiroute 2.10.0 (11abcd0)
+
 ## [0.4.0](https://github.com/dougyouch/ebay-apiroute/compare/v0.3.2...v0.4.0) (2026-10-28)
 
 ### Features
